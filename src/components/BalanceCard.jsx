@@ -2,14 +2,14 @@ import React from 'react';
 import { Send, Download, TrendingUp } from 'lucide-react';
 import '../styles/bento.css';
 
-const BalanceCard = ({ balance = 48259.40 }) => {
+const BalanceCard = ({ balance = 48259.40, className = '' }) => {
   const formattedBalance = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
   }).format(balance);
 
   return (
-    <div className="bento-card bento-large balance-card" style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) both' }}>
+    <div className={`bento-card balance-card ${className}`} style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) both' }}>
       <div className="mesh-bg"></div>
       <div className="balance-content">
         <div style={{ fontSize: '0.875rem', opacity: 0.9, letterSpacing: '0.02em' }}>Total Balance</div>

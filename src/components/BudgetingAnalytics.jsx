@@ -9,14 +9,14 @@ const CATEGORIES = [
   { id: '4', name: 'Entertainment', spent: 210, cap: 300, color: '#ec4899', icon: Film },
 ];
 
-const BudgetingAnalytics = () => {
+const BudgetingAnalytics = ({ className = '' }) => {
   const [categories, setCategories] = useState(CATEGORIES);
 
   const totalSpent = categories.reduce((sum, c) => sum + c.spent, 0);
   const totalCap = categories.reduce((sum, c) => sum + c.cap, 0);
 
   return (
-    <div className="budgeting-card">
+    <div className={`bento-card budgeting-card ${className}`}>
       <div className="budget-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <PieChart size={22} color="var(--accent-violet)" />

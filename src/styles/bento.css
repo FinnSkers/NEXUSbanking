@@ -4,6 +4,7 @@
   gap: 1.25rem;
   width: 100%;
   align-items: stretch;
+  box-sizing: border-box;
 }
 
 .bento-card {
@@ -50,8 +51,8 @@
   grid-column: span 3;
 }
 
-/* Tier 2: Large Tablets & Laptops (851px to 1100px) */
-@media (max-width: 1100px) {
+/* Tier 2: Large Tablets & Small Laptops (851px to 1080px) */
+@media (max-width: 1080px) {
   .bento-grid {
     grid-template-columns: repeat(12, 1fr);
     gap: 1rem;
@@ -67,7 +68,7 @@
   }
 }
 
-/* Tier 3: Tablets & Phones (< 850px) */
+/* Tier 3: Mobile Devices & Tablets (< 850px) */
 @media (max-width: 850px) {
   .bento-grid {
     grid-template-columns: 1fr;
@@ -86,6 +87,7 @@
   .col-span-4,
   .col-span-3 {
     grid-column: span 1 / -1;
+    width: 100%;
   }
 }
 
@@ -94,9 +96,6 @@
   position: relative;
   min-height: 200px;
   justify-content: space-between;
-  border: none;
-  background: transparent;
-  padding: 0;
 }
 
 .balance-card .mesh-bg {
@@ -119,7 +118,6 @@
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  padding: 1.5rem;
 }
 
 .balance-amount {
@@ -148,9 +146,6 @@
 .sparkline-card {
   min-height: 200px;
   justify-content: space-between;
-  border: none;
-  background: transparent;
-  padding: 0;
 }
 
 .sparkline-svg {
@@ -166,9 +161,6 @@
   align-items: center;
   text-align: center;
   justify-content: space-between;
-  border: none;
-  background: transparent;
-  padding: 0;
 }
 
 .arc-svg {

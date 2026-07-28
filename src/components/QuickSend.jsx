@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/bento.css';
 
-const QuickSend = () => {
+const QuickSend = ({ className = '' }) => {
   const contacts = [
     { name: 'Jane', initials: 'JD', gradient: 'linear-gradient(135deg, #ff6b6b, #ee5a24)' },
     { name: 'Mike', initials: 'MS', gradient: 'linear-gradient(135deg, #8b5cf6, #6366f1)' },
@@ -12,7 +12,7 @@ const QuickSend = () => {
   ];
 
   return (
-    <div className="bento-card bento-large" style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) 0.4s both' }}>
+    <div className={`bento-card ${className}`} style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) 0.4s both' }}>
       <div className="card-header">
         <div className="card-title">Quick Send</div>
         <span style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>Frequent contacts</span>

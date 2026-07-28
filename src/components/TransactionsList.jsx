@@ -15,12 +15,12 @@ const DEFAULT_TXS = [
   { id: '5', name: 'Freelance Payment', category: 'Income', date: 'Jul 23', amount: 1200.00, color: '#f59e0b', icon: 'DollarSign' },
 ];
 
-const TransactionsList = ({ transactions }) => {
+const TransactionsList = ({ transactions, className = '' }) => {
   const [selectedTx, setSelectedTx] = useState(null);
   const txList = transactions || DEFAULT_TXS;
 
   return (
-    <div className="bento-card bento-large" style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) 0.3s both' }}>
+    <div className={`bento-card ${className}`} style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) 0.3s both' }}>
       <div className="card-header">
         <div className="card-title">Recent Transactions</div>
         <span className="card-link" style={{ cursor: 'pointer' }}>Real-time sync</span>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bot, Send, Sparkles, TrendingUp, AlertTriangle, Lightbulb } from 'lucide-react';
+import { Bot, Send, Sparkles, AlertTriangle, Lightbulb } from 'lucide-react';
 import '../styles/ai_copilot.css';
 
 const MOCK_MESSAGES = [
@@ -12,7 +12,7 @@ const QUICK_PROMPTS = [
   "Predict my balance for next month"
 ];
 
-const AICopilot = () => {
+const AICopilot = ({ className = '' }) => {
   const [messages, setMessages] = useState(MOCK_MESSAGES);
   const [input, setInput] = useState('');
 
@@ -37,7 +37,7 @@ const AICopilot = () => {
   };
 
   return (
-    <div className="ai-copilot-card">
+    <div className={`bento-card ai-copilot-card ${className}`}>
       <div className="ai-card-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           <div className="ai-bot-badge">
