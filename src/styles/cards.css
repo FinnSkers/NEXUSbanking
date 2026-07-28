@@ -1,0 +1,264 @@
+.card3d-container {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.card3d-wrapper {
+  width: 380px;
+  aspect-ratio: 1.586/1;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  cursor: pointer;
+}
+
+.card3d-wrapper.smooth-reset {
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.card3d-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1.75rem;
+  backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.card3d-front {
+  background: linear-gradient(135deg, #1a1a2e 0%, #312e81 50%, #4c1d95 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.card3d-back {
+  background: linear-gradient(135deg, #4c1d95 0%, #312e81 50%, #1a1a2e 100%);
+  transform: rotateY(180deg);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.card3d-wrapper.flipped .card3d-front {
+  transform: rotateY(180deg);
+}
+
+.card3d-wrapper.flipped .card3d-back {
+  transform: rotateY(0deg);
+}
+
+.card3d-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.15) 45%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.15) 55%,
+    transparent 60%
+  );
+  background-size: 200% 200%;
+  background-position: var(--mouse-x, 50%) var(--mouse-y, 50%);
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.card3d-chip {
+  width: 45px;
+  height: 32px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card3d-number {
+  font-family: monospace;
+  font-size: 1.35rem;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card3d-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.card3d-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.65;
+  margin-bottom: 0.25rem;
+}
+
+.card3d-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.card3d-brand {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.75rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card3d-magnetic {
+  width: 100%;
+  height: 45px;
+  background: #111827;
+  margin: 1.5rem -1.75rem;
+  width: calc(100% + 3.5rem);
+}
+
+.card3d-cvv-area {
+  background: repeating-linear-gradient(90deg, #e5e7eb 0px, #e5e7eb 4px, #d1d5db 4px, #d1d5db 8px);
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: right;
+  font-family: monospace;
+  font-weight: 700;
+  color: #1a1a2e;
+  cursor: pointer;
+}
+
+.card3d-flip-hint {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.frozen-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-coral);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  gap: 0.5rem;
+  border-radius: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Card Controls Panel */
+.card-controls-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.control-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.control-info h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.15rem;
+}
+
+.control-info p {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.control-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.control-btn.freeze {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--accent-coral);
+}
+
+.control-btn.freeze:hover {
+  background: var(--accent-coral);
+  color: white;
+}
+
+.control-btn.unfreeze {
+  background: rgba(20, 184, 166, 0.1);
+  color: var(--accent-teal);
+}
+
+.control-btn.unfreeze:hover {
+  background: var(--accent-teal);
+  color: white;
+}
+
+.control-row-slider {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.limit-slider {
+  width: 100%;
+  accent-color: var(--accent-violet);
+  cursor: pointer;
+}
+
+.control-actions-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.card-action-btn {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.card-action-btn:hover {
+  border-color: var(--accent-violet);
+  color: var(--accent-violet);
+}

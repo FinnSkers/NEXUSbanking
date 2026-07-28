@@ -1,0 +1,168 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s var(--ease-out-expo) both;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 440px;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: scaleIn 0.3s var(--ease-out-expo) both;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card-hover);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.receipt-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--border-medium);
+}
+
+.receipt-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.receipt-name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.receipt-date {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.receipt-amount {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0.75rem 0;
+}
+
+.receipt-amount.positive {
+  color: var(--accent-teal);
+}
+
+.receipt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  background: rgba(20, 184, 166, 0.1);
+  color: var(--accent-teal);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.receipt-details {
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.receipt-label {
+  color: var(--text-secondary);
+}
+
+.receipt-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ref-code {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: monospace;
+  background: var(--bg-card-hover);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.ref-code:hover {
+  background: var(--border-medium);
+}
+
+.receipt-actions {
+  margin-top: 0.5rem;
+}
+
+.receipt-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.receipt-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
