@@ -1,0 +1,140 @@
+.currency-page {
+  animation: fadeInUp 0.5s var(--ease-out-expo) both;
+}
+
+.currency-header {
+  margin-bottom: 1.5rem;
+}
+
+.currency-header h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+}
+
+.currency-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.currency-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.currency-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.currency-flag {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  background: var(--bg-card-hover);
+  margin-bottom: 0.75rem;
+}
+
+.currency-value {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.swap-section {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1.5rem;
+}
+
+.swap-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.swap-form-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.swap-input-group {
+  flex: 1;
+}
+
+.swap-input-group label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.swap-select, .swap-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-base);
+  outline: none;
+  font-size: 1rem;
+}
+
+.swap-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.swap-btn:hover {
+  transform: scale(1.02);
+}
+
+.rates-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.rate-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.rate-item:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 1024px) {
+  .currency-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .swap-section {
+    grid-template-columns: 1fr;
+  }
+}

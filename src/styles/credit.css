@@ -1,0 +1,90 @@
+.credit-page {
+  animation: fadeInUp 0.5s var(--ease-out-expo) both;
+}
+
+.credit-header {
+  margin-bottom: 1.5rem;
+}
+
+.credit-header h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+}
+
+.credit-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.score-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 8px solid var(--accent-teal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.score-num {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-rating {
+  font-size: 0.85rem;
+  color: var(--accent-teal);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.loan-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.factors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.factor-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 1024px) {
+  .credit-hero {
+    grid-template-columns: 1fr;
+  }
+  .factors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

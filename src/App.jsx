@@ -3,8 +3,12 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './context/ToastContext';
 import NavBar from './components/NavBar';
-import BottomNav from './components/BottomNav';
 import BentoGrid from './components/BentoGrid';
+import VaultsPage from './components/VaultsPage';
+import MultiCurrencyPage from './components/MultiCurrencyPage';
+import BillsPage from './components/BillsPage';
+import CreditPage from './components/CreditPage';
+import InvestPage from './components/InvestPage';
 import TransactionsPage from './components/TransactionsPage';
 import TransferView from './components/TransferView';
 import CreditCard3D from './components/CreditCard3D';
@@ -26,7 +30,6 @@ const AppContent = () => {
     }
   }, [user, showSkeleton]);
 
-  // Show loading screen while checking auth
   if (isLoading) {
     return (
       <div className="app" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -35,7 +38,6 @@ const AppContent = () => {
     );
   }
 
-  // Show login if not authenticated
   if (!user) {
     return <LoginPage />;
   }
@@ -62,6 +64,36 @@ const AppContent = () => {
               <p>Here's what's happening with your finances today.</p>
             </div>
             <BentoGrid />
+          </div>
+        );
+      case 'vaults':
+        return (
+          <div className="tab-content" key="vaults">
+            <VaultsPage />
+          </div>
+        );
+      case 'fx':
+        return (
+          <div className="tab-content" key="fx">
+            <MultiCurrencyPage />
+          </div>
+        );
+      case 'bills':
+        return (
+          <div className="tab-content" key="bills">
+            <BillsPage />
+          </div>
+        );
+      case 'credit':
+        return (
+          <div className="tab-content" key="credit">
+            <CreditPage />
+          </div>
+        );
+      case 'invest':
+        return (
+          <div className="tab-content" key="invest">
+            <InvestPage />
           </div>
         );
       case 'transactions':
