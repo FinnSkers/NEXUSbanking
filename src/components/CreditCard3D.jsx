@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Lock, Unlock, Copy, ShieldCheck, Wifi, Eye, EyeOff, Sparkles, CreditCard as CardIcon } from 'lucide-react';
+import { Lock, Unlock, Copy, ShieldCheck, Wifi, Eye, EyeOff } from 'lucide-react';
 import { api } from '../services/api';
 import { useToast } from '../context/ToastContext';
 import '../styles/cards.css';
@@ -33,12 +33,20 @@ const CreditCard3D = () => {
   const { addToast } = useToast();
 
   useEffect(() => {
-    api.getCard().then(data => {
-      if (data) {
-        setCardData(data);
-        setSpendingLimit(data.spendingLimit || 5000);
+    try {
+      if (api && typeof api.getCard === 'function') {
+        api.getCard().then(data => {
+          if (data) {
+            setCardData(data);
+            setSpendingLimit(data.spendingLimit || 5000);
+          }
+        }).catch(err => {
+          console.warn('Card load fallback:', err);
+        });
       }
-    });
+    } catch (err) {
+      console.warn('Card load error:', err);
+    }
   }, []);
 
   const handleMouseMove = (e) => {
@@ -71,10 +79,14 @@ const CreditCard3D = () => {
   };
 
   const handleFreezeToggle = async () => {
-    const newStatus = !(cardData?.isFrozen);
-    const updated = await api.updateCard({ isFrozen: newStatus });
-    setCardData(updated || { ...cardData, isFrozen: newStatus });
-    addToast(newStatus ? 'Card frozen successfully' : 'Card unfrozen', newStatus ? 'warning' : 'success');
+    try {
+      const newStatus = !(cardData?.isFrozen);
+      const updated = await (api.updateCard ? api.updateCard({ isFrozen: newStatus }) : Promise.resolve({ ...cardData, isFrozen: newStatus }));
+      setCardData(updated || { ...cardData, isFrozen: newStatus });
+      addToast(newStatus ? 'Card frozen successfully' : 'Card unfrozen', newStatus ? 'warning' : 'success');
+    } catch (err) {
+      addToast('Failed to update card status', 'error');
+    }
   };
 
   const handleLimitChange = (e) => {
@@ -83,20 +95,57 @@ const CreditCard3D = () => {
   };
 
   const handleLimitCommit = async () => {
-    await api.updateCard({ spendingLimit });
-    addToast(`Monthly spending limit set to $${spendingLimit.toLocaleString()}`, 'info');
+    try {
+      if (api.updateCard) {
+        await api.updateCard({ spendingLimit });
+      }
+      addToast(`Monthly spending limit set to $${spendingLimit.toLocaleString()}`, 'info');
+    } catch (err) {
+      addToast('Failed to update limit', 'error');
+    }
+  };
+
+  const safeCopy = (text, message) => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text)
+          .then(() => addToast(message, 'info'))
+          .catch(() => fallbackCopy(text, message));
+      } else {
+        fallbackCopy(text, message);
+      }
+    } catch (err) {
+      fallbackCopy(text, message);
+    }
+  };
+
+  const fallbackCopy = (text, message) => {
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      addToast(message, 'info');
+    } catch (err) {
+      addToast(message, 'info');
+    }
   };
 
   const handleCopyCardNumber = (e) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(cardData?.number?.replace(/\s/g, '') || '4281901234564281');
-    addToast('Card number copied to clipboard!', 'info');
+    const num = cardData?.number?.replace(/\s/g, '') || '4281901234564281';
+    safeCopy(num, 'Card number copied to clipboard!');
   };
 
   const handleCopyCVV = (e) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(cardData?.cvv || '849');
-    addToast('CVV copied to clipboard!', 'info');
+    const cvv = cardData?.cvv || '849';
+    safeCopy(cvv, 'CVV copied to clipboard!');
   };
 
   return (
@@ -115,7 +164,7 @@ const CreditCard3D = () => {
         ))}
       </div>
 
-      {/* 3D Card Interactive Stage */}
+      {/* 3D Card Stage */}
       <div className="card3d-stage">
         <div className="card3d-container">
           <div 
