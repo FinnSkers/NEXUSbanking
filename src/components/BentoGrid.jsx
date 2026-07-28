@@ -46,37 +46,51 @@ const BentoGrid = () => {
       </div>
 
       <div className="bento-grid">
-        <BalanceCard balance={overview?.balance} />
-        <SparklineCard />
-        <ArcCard 
-          title="Income" 
-          value={overview?.income || 5700} 
-          total={8000} 
-          color="var(--accent-teal)" 
-          icon={TrendingUp} 
-          delay={0.2} 
-        />
-        <ArcCard 
-          title="Expenses" 
-          value={overview?.expenses || 3210} 
-          total={5000} 
-          color="var(--accent-coral)" 
-          icon={TrendingDown} 
-          delay={0.3} 
-        />
-        
-        {/* AI Financial Copilot */}
-        <div className="bento-card bento-wide">
-          <AICopilot />
+        {/* Row 1: Balance (7 cols) + 7-Day Trend (5 cols) */}
+        <div className="col-span-7">
+          <BalanceCard balance={overview?.balance} />
+        </div>
+        <div className="col-span-5">
+          <SparklineCard />
         </div>
 
-        {/* Budget Analytics */}
-        <div className="bento-card bento-wide">
+        {/* Row 2: Income Arc (6 cols) + Expenses Arc (6 cols) */}
+        <div className="col-span-6">
+          <ArcCard 
+            title="Income" 
+            value={overview?.income || 5700} 
+            total={8000} 
+            color="var(--accent-teal)" 
+            icon={TrendingUp} 
+            delay={0.2} 
+          />
+        </div>
+        <div className="col-span-6">
+          <ArcCard 
+            title="Expenses" 
+            value={overview?.expenses || 3210} 
+            total={5000} 
+            color="var(--accent-coral)" 
+            icon={TrendingDown} 
+            delay={0.3} 
+          />
+        </div>
+        
+        {/* Row 3: AI Copilot (7 cols) + Budget Analytics (5 cols) */}
+        <div className="col-span-7">
+          <AICopilot />
+        </div>
+        <div className="col-span-5">
           <BudgetingAnalytics />
         </div>
 
-        <TransactionsList transactions={overview?.recentTransactions} />
-        <QuickSend />
+        {/* Row 4: Recent Transactions (7 cols) + Quick Send (5 cols) */}
+        <div className="col-span-7">
+          <TransactionsList transactions={overview?.recentTransactions} />
+        </div>
+        <div className="col-span-5">
+          <QuickSend />
+        </div>
       </div>
 
       <QRPayModal isOpen={showQR} onClose={() => setShowQR(false)} />

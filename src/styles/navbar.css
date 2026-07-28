@@ -2,7 +2,7 @@
   position: fixed;
   bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translateX(-50%);
   width: fit-content;
   max-width: calc(100vw - 1.5rem);
   margin: 0 auto;
@@ -12,18 +12,18 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-light);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  animation: navFadeInUp 0.6s var(--ease-out-expo) both;
+  z-index: 9999;
+  animation: navFadeIn 0.4s ease both;
 }
 
-@keyframes navFadeInUp {
+@keyframes navFadeIn {
   from {
     opacity: 0;
-    transform: translate(-50%, 24px);
+    transform: translate(-50%, 16px);
   }
   to {
     opacity: 1;
@@ -83,7 +83,6 @@
   border-radius: 2px;
   background: var(--gradient-primary);
   box-shadow: 0 0 8px var(--accent-violet);
-  animation: scaleIn 0.3s var(--ease-out-expo) both;
 }
 
 .nav-theme-btn {
