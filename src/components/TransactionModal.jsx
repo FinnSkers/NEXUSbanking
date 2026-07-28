@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { X, Copy, Download, CheckCircle, ShoppingBag, Briefcase, Music, ArrowUpRight, DollarSign, Dumbbell, Monitor, Zap, Coffee, ArrowDownLeft, Car, TrendingUp } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
 import '../styles/modal.css';
@@ -11,7 +12,10 @@ const TransactionModal = ({ transaction, onClose }) => {
   const { addToast } = useToast();
   if (!transaction) return null;
 
-  const Icon = iconMap[transaction.icon] || ArrowUpRight;
+  const Icon = (typeof transaction.icon === 'function' || typeof transaction.icon === 'object')
+    ? transaction.icon
+    : (iconMap[transaction.icon] || ArrowUpRight);
+
   const isPositive = transaction.amount > 0;
 
   const handleCopyRef = () => {
@@ -23,7 +27,7 @@ const TransactionModal = ({ transaction, onClose }) => {
     addToast(`Receipt for ${transaction.name} downloaded!`, 'success');
   };
 
-  return (
+  const modalUI = (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>
@@ -31,8 +35,8 @@ const TransactionModal = ({ transaction, onClose }) => {
         </button>
 
         <div className="receipt-header">
-          <div className="receipt-icon" style={{ backgroundColor: transaction.color }}>
-            <Icon size={24} />
+          <div className="receipt-icon" style={{ backgroundColor: transaction.color || 'var(--accent-violet)' }}>
+            <Icon size={24} color="white" />
           </div>
           <h3 className="receipt-name">{transaction.name}</h3>
           <div className="receipt-date">{transaction.date}</div>
@@ -77,6 +81,8 @@ const TransactionModal = ({ transaction, onClose }) => {
       </div>
     </div>
   );
+
+  return ReactDOM.createPortal(modalUI, document.body);
 };
 
 export default TransactionModal;
