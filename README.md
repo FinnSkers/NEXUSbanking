@@ -21,9 +21,13 @@
 ## ✨ Features
 
 - **🍱 Bento Grid Dashboard**: Apple-inspired asymmetric layout featuring total balance, 7-day trend sparklines, circular arc income/expense progress trackers, recent transactions, and quick send bubbles.
-- **💳 3D Interactive Credit Card**: A 3D credit card component that tracks mouse position, tilts with realistic perspective (±15°), features a holographic shimmer overlay, and flips on click to reveal CVV credentials.
-- **⚓ Centered Floating Bottom Navbar**: A glassmorphism navigation pill centered at the bottom of the screen across desktop and mobile.
-- **🌙 Real-time Dark Mode**: Instant theme switcher (Sun/Moon) right on the floating navbar, persisting theme preferences to `localStorage`.
+- **🐖 Savings Vaults & Auto-Roundup**: Goal-based savings buckets (*Emergency Fund, Vacation, Tech*) with target progress bars, deposit modals, and automatic card purchase roundups.
+- **🌍 Multi-Currency & Instant FX Swap**: Hold global balances (**USD, EUR, GBP, JPY**) and perform 1-click currency exchanges at live market rates.
+- **📅 Subscriptions & Bill Manager**: Track recurring utilities and subscriptions (*Electricity, Fiber Internet, Rent, Gym*) with 1-click bill payments.
+- **💳 3D Interactive Credit Card & Controls**: Interactive 3D mouse-tracking card with holographic shimmer, card freeze/unfreeze toggle, and monthly spending limit slider.
+- **📈 Credit Score & Pre-Approved Loans**: FICO 785 credit rating meter, score breakdown factors, and pre-approved instant loan deposit application ($1,000 – $15,000).
+- **🪙 Investments & Crypto Watchlist**: Real-time stock & crypto holdings tracker (AAPL, TSLA, BTC, ETH) with 24h gain/loss metrics.
+- **⚓ Centered Floating Bottom Navbar**: A glassmorphism navigation pill centered at the bottom of the screen with quick dark mode toggle.
 - **🔐 Full Authentication Flow**: Split-screen login & signup interface with floating label inputs and `AuthContext` state guard.
 - **📊 Transaction History & Export**: Complete history page with real-time text search, category filter pills, pagination, and **one-click Export to CSV / JSON**.
 - **🧾 Transaction Receipt Modal**: Click any transaction on the dashboard or history page to open an interactive receipt modal with reference copying and receipt downloads.
