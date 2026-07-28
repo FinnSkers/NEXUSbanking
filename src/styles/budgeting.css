@@ -1,0 +1,90 @@
+.budgeting-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.budget-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+}
+
+.budget-total-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-violet);
+  background: rgba(139, 92, 246, 0.12);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.budget-cat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pct-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.pct-tag.warning {
+  color: var(--accent-coral);
+}
+
+.budget-progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-base);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.budget-progress-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s var(--ease-out-expo);
+}
+
+.budget-warning-text {
+  font-size: 0.7rem;
+  color: var(--accent-coral);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
