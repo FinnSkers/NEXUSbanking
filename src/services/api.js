@@ -44,6 +44,17 @@ const INITIAL_INVESTMENTS = [
   { symbol: 'ETH', name: 'Ethereum', price: 3480.00, change: 3.10, shares: 1.2, value: 4176.00, type: 'Crypto' },
 ];
 
+const INITIAL_CARD = {
+  id: 'card-1',
+  number: '4281  9012  3456  4281',
+  cardholder: 'ALEX DOE',
+  expiry: '12/28',
+  cvv: '849',
+  isFrozen: false,
+  spendingLimit: 5000,
+  currentSpent: 1240,
+};
+
 const getDB = () => {
   const txs = localStorage.getItem('nexus_db_txs');
   const balance = localStorage.getItem('nexus_db_balance');
@@ -51,6 +62,7 @@ const getDB = () => {
   const fx = localStorage.getItem('nexus_db_fx');
   const bills = localStorage.getItem('nexus_db_bills');
   const investments = localStorage.getItem('nexus_db_investments');
+  const card = localStorage.getItem('nexus_db_card');
 
   return {
     transactions: txs ? JSON.parse(txs) : INITIAL_TRANSACTIONS,
@@ -59,6 +71,7 @@ const getDB = () => {
     fx: fx ? JSON.parse(fx) : INITIAL_FX,
     bills: bills ? JSON.parse(bills) : INITIAL_BILLS,
     investments: investments ? JSON.parse(investments) : INITIAL_INVESTMENTS,
+    card: card ? JSON.parse(card) : INITIAL_CARD,
   };
 };
 
@@ -69,6 +82,7 @@ const saveDB = (db) => {
   localStorage.setItem('nexus_db_fx', JSON.stringify(db.fx));
   localStorage.setItem('nexus_db_bills', JSON.stringify(db.bills));
   localStorage.setItem('nexus_db_investments', JSON.stringify(db.investments));
+  if (db.card) localStorage.setItem('nexus_db_card', JSON.stringify(db.card));
 };
 
 export const api = {
@@ -104,6 +118,19 @@ export const api = {
     db.balance += newTx.amount;
     saveDB(db);
     return newTx;
+  },
+
+  // Cards API
+  getCard: async () => {
+    const db = getDB();
+    return db.card || INITIAL_CARD;
+  },
+
+  updateCard: async (updates) => {
+    const db = getDB();
+    db.card = { ...(db.card || INITIAL_CARD), ...updates };
+    saveDB(db);
+    return db.card;
   },
 
   // Vaults
