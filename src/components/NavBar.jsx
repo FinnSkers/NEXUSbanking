@@ -34,13 +34,6 @@ const NavBar = ({ activeTab, onTabChange }) => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-side navbar-left">
-        <img src="/logo.png" alt="NEXUS Logo" className="logo-img" style={{ width: 28, height: 28, objectFit: 'contain' }} />
-        <span className="logo-text">
-          <span style={{ color: 'var(--accent-violet)' }}>N</span>EXUS
-        </span>
-      </div>
-
       <div className="nav-tabs">
         {tabs.map((tab, index) => {
           const Icon = tab.icon;
@@ -57,11 +50,9 @@ const NavBar = ({ activeTab, onTabChange }) => {
             </button>
           );
         })}
-      </div>
 
-      <div className="navbar-side navbar-right">
-        <button className="nav-theme-btn" onClick={toggleTheme} title="Toggle Dark/Light Mode">
-          {isDark ? <Sun size={17} color="var(--accent-amber)" /> : <Moon size={17} color="var(--accent-violet)" />}
+        <button className="nav-theme-btn" onClick={toggleTheme} title="Toggle Dark/Light Mode" style={{ marginLeft: '0.4rem' }}>
+          {isDark ? <Sun size={16} color="var(--accent-amber)" /> : <Moon size={16} color="var(--accent-violet)" />}
         </button>
       </div>
     </nav>

@@ -4,19 +4,32 @@ import { api } from '../services/api';
 import { useToast } from '../context/ToastContext';
 import '../styles/cards.css';
 
+const DEFAULT_CARD = {
+  id: 'card-1',
+  number: '4281 9012 3456 4281',
+  cardholder: 'ALEX DOE',
+  expiry: '12/28',
+  cvv: '123',
+  isFrozen: false,
+  spendingLimit: 5000,
+  currentSpent: 1240,
+};
+
 const CreditCard3D = () => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isFlipped, setIsFlipped] = useState(false);
   const [isMouseLeave, setIsMouseLeave] = useState(true);
-  const [cardData, setCardData] = useState(null);
+  const [cardData, setCardData] = useState(DEFAULT_CARD);
   const [spendingLimit, setSpendingLimit] = useState(5000);
   const cardRef = useRef(null);
   const { addToast } = useToast();
 
   useEffect(() => {
     api.getCard().then(data => {
-      setCardData(data);
-      setSpendingLimit(data.spendingLimit || 5000);
+      if (data) {
+        setCardData(data);
+        setSpendingLimit(data.spendingLimit || 5000);
+      }
     });
   }, []);
 
@@ -50,13 +63,13 @@ const CreditCard3D = () => {
   };
 
   const handleFreezeToggle = async () => {
-    const newStatus = !cardData.isFrozen;
+    const newStatus = !(cardData?.isFrozen);
     const updated = await api.updateCard({ isFrozen: newStatus });
-    setCardData(updated);
+    setCardData(updated || { ...cardData, isFrozen: newStatus });
     addToast(newStatus ? 'Card frozen successfully' : 'Card unfrozen', newStatus ? 'warning' : 'success');
   };
 
-  const handleLimitChange = async (e) => {
+  const handleLimitChange = (e) => {
     const newLimit = parseInt(e.target.value);
     setSpendingLimit(newLimit);
   };
