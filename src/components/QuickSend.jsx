@@ -12,7 +12,7 @@ const QuickSend = () => {
   ];
 
   return (
-    <div className="bento-card bento-full" style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) 0.4s both' }}>
+    <div className="bento-card bento-large" style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) 0.4s both' }}>
       <div className="card-header">
         <div className="card-title">Quick Send</div>
         <span style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>Frequent contacts</span>

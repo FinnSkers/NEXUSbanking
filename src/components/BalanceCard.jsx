@@ -13,7 +13,7 @@ const BalanceCard = ({ balance = 48259.40 }) => {
       <div className="mesh-bg"></div>
       <div className="balance-content">
         <div style={{ fontSize: '0.875rem', opacity: 0.9, letterSpacing: '0.02em' }}>Total Balance</div>
-        <div style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', fontWeight: 'bold', margin: '0.5rem 0 0.75rem 0', lineHeight: 1 }}>
+        <div className="balance-amount">
           {formattedBalance}
         </div>
         

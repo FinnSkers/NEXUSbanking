@@ -20,7 +20,7 @@ const TransactionsList = ({ transactions }) => {
   const txList = transactions || DEFAULT_TXS;
 
   return (
-    <div className="bento-card bento-wide" style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) 0.3s both' }}>
+    <div className="bento-card bento-large" style={{ animation: 'fadeInUp 0.5s var(--ease-out-expo) 0.3s both' }}>
       <div className="card-header">
         <div className="card-title">Recent Transactions</div>
         <span className="card-link" style={{ cursor: 'pointer' }}>Real-time sync</span>
@@ -37,7 +37,7 @@ const TransactionsList = ({ transactions }) => {
               style={{ animation: `slideIn 0.4s var(--ease-out-expo) ${0.4 + index * 0.1}s both`, cursor: 'pointer' }}
               onClick={() => setSelectedTx(tx)}
             >
-              <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', flex: 1, minWidth: 0 }}>
                 <div className="tx-icon" style={{ backgroundColor: tx.color || '#8b5cf6' }}>
                   <Icon size={18} />
                 </div>

@@ -10,22 +10,20 @@ const ArcCard = ({ title, value, total, color, icon: Icon, delay }) => {
   const percentage = Math.round((value / total) * 100);
 
   return (
-    <div className="bento-card arc-card" style={{ animation: `fadeInUp 0.5s var(--ease-out-expo) ${delay}s both` }}>
+    <div className="bento-card bento-small arc-card" style={{ animation: `fadeInUp 0.5s var(--ease-out-expo) ${delay}s both` }}>
       <div className="card-header" style={{ width: '100%' }}>
         <div className="card-title">{title}</div>
         <Icon size={20} color={color} />
       </div>
       
-      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '1rem 0' }}>
+      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0.75rem 0' }}>
         <svg className="arc-svg" viewBox="0 0 100 100" style={{ '--circumference': circumference, '--offset': offset }}>
-          {/* Background Circle */}
           <circle 
             cx="50" cy="50" r={radius} 
             fill="none" 
             stroke="var(--bg-elevated, #f3f4f6)" 
             strokeWidth="8" 
           />
-          {/* Progress Circle */}
           <circle 
             cx="50" cy="50" r={radius} 
             fill="none" 
