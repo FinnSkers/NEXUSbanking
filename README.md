@@ -1,7 +1,7 @@
 # ⚡ NEXUS Banking
 
 <p align="center">
-  <img src="public/favicon.svg" width="80" alt="NEXUS Banking Logo" />
+  <img src="public/logo.png" width="100" alt="NEXUS Banking Logo" />
 </p>
 
 <p align="center">

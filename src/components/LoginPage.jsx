@@ -59,7 +59,7 @@ const LoginPage = () => {
         <div className="login-hero-bg"></div>
         <div className="login-hero-content">
           <div className="login-hero-logo">
-            <Hexagon size={48} color="white" fill="currentColor" />
+            <img src="/logo.png" alt="NEXUS Logo" style={{ width: 52, height: 52, objectFit: 'contain' }} />
             <span>NEXUS</span>
           </div>
           <p className="login-hero-tagline">Banking reimagined for the modern world.</p>
@@ -69,7 +69,7 @@ const LoginPage = () => {
       <div className="login-form-side">
         <div className="login-form">
           <div className="login-mobile-logo">
-            <Hexagon size={32} color="var(--accent-violet)" fill="currentColor" />
+            <img src="/logo.png" alt="NEXUS Logo" style={{ width: 36, height: 36, objectFit: 'contain' }} />
             <span>NEXUS</span>
           </div>
           

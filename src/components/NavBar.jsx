@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Receipt, ArrowLeftRight, CreditCard, UserCircle, Hexagon, Sun, Moon } from 'lucide-react';
+import { LayoutDashboard, Receipt, ArrowLeftRight, CreditCard, UserCircle, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import '../styles/navbar.css';
 
@@ -17,7 +17,7 @@ const NavBar = ({ activeTab, onTabChange }) => {
   return (
     <nav className="navbar">
       <div className="navbar-side navbar-left">
-        <Hexagon size={22} className="logo-icon" color="var(--accent-violet)" />
+        <img src="/logo.png" alt="NEXUS Logo" className="logo-img" style={{ width: 28, height: 28, objectFit: 'contain' }} />
         <span className="logo-text">
           <span style={{ color: 'var(--accent-violet)' }}>N</span>EXUS
         </span>
