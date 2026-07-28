@@ -1,5 +1,6 @@
 .transactions-page {
   animation: fadeInUp 0.5s var(--ease-out-expo) both;
+  width: 100%;
 }
 
 .transactions-header {
@@ -8,7 +9,7 @@
 
 .transactions-header h1 {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
   margin: 0 0 0.5rem 0;
 }
 
@@ -19,7 +20,7 @@
 
 .transactions-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -66,6 +67,7 @@
   margin-bottom: 1rem;
   box-shadow: var(--shadow-sm);
   transition: border-color var(--transition-fast);
+  width: 100%;
 }
 
 .search-bar:focus-within {
@@ -80,6 +82,7 @@
   margin-left: 0.5rem;
   font-size: 0.95rem;
   color: var(--text-primary);
+  width: 100%;
 }
 
 .filter-row {
@@ -118,6 +121,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  width: 100%;
 }
 
 .tx-table-row {
@@ -151,11 +155,15 @@
 .tx-table-info {
   flex: 1;
   margin-left: 1rem;
+  min-width: 0;
 }
 
 .tx-table-name {
   font-weight: 600;
   font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tx-table-meta {
@@ -183,6 +191,8 @@
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1rem;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
 }
 
 .tx-table-amount.positive {
@@ -232,8 +242,12 @@
   color: var(--text-tertiary);
 }
 
-@media (max-width: 640px) {
-  .transactions-stats {
-    grid-template-columns: 1fr;
+@media (max-width: 480px) {
+  .tx-table-row {
+    padding: 0.85rem 0.75rem;
+  }
+
+  .tx-table-info {
+    margin-left: 0.6rem;
   }
 }

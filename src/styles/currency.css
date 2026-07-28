@@ -1,5 +1,6 @@
 .currency-page {
   animation: fadeInUp 0.5s var(--ease-out-expo) both;
+  width: 100%;
 }
 
 .currency-header {
@@ -8,12 +9,12 @@
 
 .currency-header h1 {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
 }
 
 .currency-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -47,7 +48,7 @@
 
 .currency-value {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 700;
   margin-top: 0.25rem;
 }
@@ -75,6 +76,7 @@
 
 .swap-input-group {
   flex: 1;
+  width: 100%;
 }
 
 .swap-input-group label {
@@ -130,11 +132,19 @@
   border-bottom: none;
 }
 
-@media (max-width: 1024px) {
-  .currency-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width: 900px) {
   .swap-section {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .swap-form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .swap-card, .rates-card {
+    padding: 1.25rem;
   }
 }
