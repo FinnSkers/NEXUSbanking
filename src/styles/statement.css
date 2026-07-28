@@ -1,0 +1,128 @@
+.statement-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1300;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease;
+}
+
+.statement-modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.statement-paper {
+  background: #ffffff;
+  color: #1a1a2e;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin: 1.25rem 0;
+  font-family: var(--font-body);
+}
+
+.statement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #1a1a2e;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.statement-summary-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.box-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.box-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+
+.statement-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.statement-table th {
+  text-align: left;
+  padding: 0.6rem;
+  border-bottom: 2px solid #e5e7eb;
+  color: #6b7280;
+}
+
+.statement-table td {
+  padding: 0.6rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.statement-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.statement-btn.print {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+.statement-btn.csv {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .statement-paper, .statement-paper * {
+    visibility: visible;
+  }
+  .statement-paper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}

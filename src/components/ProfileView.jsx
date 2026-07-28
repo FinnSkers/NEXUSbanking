@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { FileText, Bell } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useToast } from '../context/ToastContext';
+import StatementModal from './StatementModal';
+import NotificationsDrawer from './NotificationsDrawer';
 import '../styles/profile.css';
 
 const ProfileView = () => {
@@ -10,6 +13,8 @@ const ProfileView = () => {
   const { addToast } = useToast();
   const [notifications, setNotifications] = useState(true);
   const [biometric, setBiometric] = useState(true);
+  const [showStatement, setShowStatement] = useState(false);
+  const [showNotificationsDrawer, setShowNotificationsDrawer] = useState(false);
 
   const handleSave = () => {
     addToast('Settings saved successfully!', 'success');
@@ -26,6 +31,53 @@ const ProfileView = () => {
         <div className="profile-avatar">{user?.avatar || 'AD'}</div>
         <h2 className="profile-name">{user?.firstName} {user?.lastName}</h2>
         <div className="profile-subtitle">{user?.tier} Member · Joined {user?.memberSince}</div>
+      </div>
+
+      {/* Account Statement & Notifications Quick Bar */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+        <button 
+          onClick={() => setShowStatement(true)}
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border-light)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '1.25rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            boxShadow: 'var(--shadow-sm)',
+            cursor: 'pointer',
+            textAlign: 'left'
+          }}
+        >
+          <FileText size={24} color="var(--accent-violet)" />
+          <div>
+            <div style={{ fontWeight: '700', fontSize: '0.95rem' }}>Bank Statement</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Print or download PDF</div>
+          </div>
+        </button>
+
+        <button 
+          onClick={() => setShowNotificationsDrawer(true)}
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border-light)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '1.25rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            boxShadow: 'var(--shadow-sm)',
+            cursor: 'pointer',
+            textAlign: 'left'
+          }}
+        >
+          <Bell size={24} color="var(--accent-teal)" />
+          <div>
+            <div style={{ fontWeight: '700', fontSize: '0.95rem' }}>Notifications</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--accent-coral)', fontWeight: '600' }}>3 Unread alerts</div>
+          </div>
+        </button>
       </div>
 
       <div className="profile-card">
@@ -98,6 +150,9 @@ const ProfileView = () => {
       >
         Log Out
       </button>
+
+      <StatementModal isOpen={showStatement} onClose={() => setShowStatement(false)} />
+      <NotificationsDrawer isOpen={showNotificationsDrawer} onClose={() => setShowNotificationsDrawer(false)} />
     </div>
   );
 };
