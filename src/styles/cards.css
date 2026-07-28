@@ -1,17 +1,69 @@
+.cards-page-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  animation: fadeInUp 0.5s var(--ease-out-expo) both;
+}
+
+.card-theme-picker {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--bg-card);
+  padding: 0.35rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.theme-chip.active {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.card3d-stage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .card3d-container {
   perspective: 1000px;
   -webkit-perspective: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
   width: 100%;
 }
 
 .card3d-wrapper {
-  width: 380px;
-  max-width: 100%;
-  height: 240px;
+  width: min(380px, 90vw);
+  height: clamp(210px, 55vw, 240px);
   position: relative;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
@@ -30,7 +82,7 @@
   padding: 1.5rem 1.75rem;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -38,16 +90,14 @@
 }
 
 .card3d-front {
-  background: linear-gradient(135deg, #1a1a2e 0%, #312e81 50%, #4c1d95 100%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   z-index: 2;
 }
 
 .card3d-back {
-  background: linear-gradient(135deg, #4c1d95 0%, #312e81 50%, #1a1a2e 100%);
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   z-index: 1;
 }
 
@@ -59,6 +109,57 @@
 .card3d-wrapper.flipped .card3d-back {
   transform: rotateY(0deg);
   -webkit-transform: rotateY(0deg);
+}
+
+.card3d-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.emv-chip {
+  width: 44px;
+  height: 32px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.chip-line {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.chip-line.horizontal {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.chip-line.vertical {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.contactless-icon {
+  opacity: 0.8;
+  transform: rotate(90deg);
+  margin-left: 0.5rem;
+}
+
+.card3d-brand {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin-left: auto;
 }
 
 .card3d-shimmer {
@@ -78,20 +179,12 @@
   border-radius: 20px;
 }
 
-.card3d-chip {
-  width: 45px;
-  height: 32px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #fbbf24, #d97706);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
 .card3d-number {
   font-family: monospace;
-  font-size: 1.35rem;
-  letter-spacing: 3px;
+  font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+  letter-spacing: 2px;
   color: #ffffff;
-  margin: 1rem 0;
+  margin: 0.75rem 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
@@ -103,50 +196,93 @@
 }
 
 .card3d-label {
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   opacity: 0.75;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
 }
 
 .card3d-value {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.card3d-brand {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.75rem;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #ffffff;
+.card-network-logo {
+  display: flex;
+  align-items: center;
+}
+
+.network-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.network-circle.red {
+  background: #eb001b;
+}
+
+.network-circle.orange {
+  background: #ff5f00;
+  margin-left: -10px;
+  opacity: 0.9;
 }
 
 .card3d-magnetic {
   width: calc(100% + 3.5rem);
-  height: 45px;
-  background: #111827;
-  margin: 0 -1.75rem;
+  height: 42px;
+  background: #090d16;
+  margin: -0.5rem -1.75rem 1rem;
 }
 
-.card3d-cvv-area {
+.card3d-cvv-strip {
+  display: flex;
+  align-items: center;
   background: #e5e7eb;
-  padding: 0.75rem;
   border-radius: 4px;
-  text-align: right;
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.signature-pattern {
+  flex: 1;
+  height: 24px;
+  background: repeating-linear-gradient(45deg, #d1d5db, #d1d5db 6px, #e5e7eb 6px, #e5e7eb 12px);
+  border-radius: 2px;
+}
+
+.cvv-box {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-left: 0.6rem;
   font-family: monospace;
   font-weight: 700;
   color: #1a1a2e;
   cursor: pointer;
 }
 
+.cvv-label {
+  font-size: 0.65rem;
+  color: #6b7280;
+}
+
+.cvv-val {
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+.card3d-back-info {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.3;
+}
+
 .card3d-flip-hint {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -154,7 +290,7 @@
   position: absolute;
   inset: 0;
   background: rgba(15, 23, 42, 0.9);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,13 +308,14 @@
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 1.75rem;
   width: 100%;
   max-width: 500px;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  box-sizing: border-box;
 }
 
 .control-row {
@@ -213,6 +350,7 @@
   transition: all var(--transition-fast);
   border: none;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .control-btn.freeze {
@@ -248,18 +386,20 @@
 
 .control-actions-row {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .card-action-btn {
   flex: 1;
-  padding: 0.65rem 1rem;
+  min-width: 130px;
+  padding: 0.65rem 0.85rem;
   border-radius: var(--radius-full);
   background: var(--bg-card-hover);
   border: 1px solid var(--border-light);
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,17 +414,21 @@
 }
 
 @media (max-width: 480px) {
-  .card3d-wrapper {
-    width: 300px;
-    height: 190px;
+  .card-theme-picker {
+    width: 100%;
+    justify-content: center;
   }
 
-  .card3d-number {
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+  .theme-chip {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.75rem;
   }
 
   .card-controls-panel {
-    padding: 1.25rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .card-action-btn {
+    min-width: 100%;
   }
 }
