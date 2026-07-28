@@ -14,34 +14,31 @@ const MOCK_USER = {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Check localStorage for persisted session
-    const stored = localStorage.getItem('nexus_auth');
-    if (stored) {
-      setUser(JSON.parse(stored));
+  const [user, setUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem('nexus_auth');
+      return stored ? JSON.parse(stored) : MOCK_USER;
+    } catch (e) {
+      return MOCK_USER;
     }
-    setIsLoading(false);
-  }, []);
+  });
+  const [isLoading, setIsLoading] = useState(false);
 
   const login = async (email, password) => {
-    // Simulate API call delay
     setIsLoading(true);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (email && password.length >= 6) {
           const userData = { ...MOCK_USER, email };
           setUser(userData);
-          localStorage.setItem('nexus_auth', JSON.stringify(userData));
+          try { localStorage.setItem('nexus_auth', JSON.stringify(userData)); } catch(e){}
           setIsLoading(false);
           resolve(userData);
         } else {
           setIsLoading(false);
           reject(new Error('Invalid credentials. Password must be at least 6 characters.'));
         }
-      }, 1200);
+      }, 800);
     });
   };
 
@@ -58,20 +55,20 @@ export const AuthProvider = ({ children }) => {
             avatar: `${firstName[0]}${lastName[0]}`.toUpperCase(),
           };
           setUser(userData);
-          localStorage.setItem('nexus_auth', JSON.stringify(userData));
+          try { localStorage.setItem('nexus_auth', JSON.stringify(userData)); } catch(e){}
           setIsLoading(false);
           resolve(userData);
         } else {
           setIsLoading(false);
           reject(new Error('Please fill all fields. Password must be at least 6 characters.'));
         }
-      }, 1200);
+      }, 800);
     });
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('nexus_auth');
+    try { localStorage.removeItem('nexus_auth'); } catch(e){}
   };
 
   return (
