@@ -1,12 +1,7 @@
 import React from 'react';
 import { 
   LayoutDashboard, 
-  PiggyBank, 
-  Globe, 
-  Calendar, 
-  Gauge, 
-  TrendingUp, 
-  Receipt, 
+  Wallet, 
   ArrowLeftRight, 
   CreditCard, 
   UserCircle, 
@@ -21,12 +16,7 @@ const NavBar = ({ activeTab, onTabChange }) => {
 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'vaults', label: 'Vaults', icon: PiggyBank },
-    { id: 'fx', label: 'FX Swap', icon: Globe },
-    { id: 'bills', label: 'Bills', icon: Calendar },
-    { id: 'credit', label: 'Credit', icon: Gauge },
-    { id: 'invest', label: 'Invest', icon: TrendingUp },
-    { id: 'transactions', label: 'History', icon: Receipt },
+    { id: 'finance', label: 'Finance', icon: Wallet },
     { id: 'transfers', label: 'Transfers', icon: ArrowLeftRight },
     { id: 'cards', label: 'Cards', icon: CreditCard },
     { id: 'profile', label: 'Profile', icon: UserCircle },
@@ -42,10 +32,10 @@ const NavBar = ({ activeTab, onTabChange }) => {
               key={tab.id}
               className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
               onClick={() => onTabChange(tab.id)}
-              style={{ animationDelay: `${index * 0.03}s` }}
+              style={{ animationDelay: `${index * 0.04}s` }}
               title={tab.label}
             >
-              <Icon size={17} />
+              <Icon size={18} />
               <span>{tab.label}</span>
             </button>
           );

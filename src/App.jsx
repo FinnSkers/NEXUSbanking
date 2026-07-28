@@ -4,11 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './context/ToastContext';
 import NavBar from './components/NavBar';
 import BentoGrid from './components/BentoGrid';
-import VaultsPage from './components/VaultsPage';
-import MultiCurrencyPage from './components/MultiCurrencyPage';
-import BillsPage from './components/BillsPage';
-import CreditPage from './components/CreditPage';
-import InvestPage from './components/InvestPage';
+import FinanceHub from './components/FinanceHub';
 import TransactionsPage from './components/TransactionsPage';
 import TransferView from './components/TransferView';
 import CreditCard3D from './components/CreditCard3D';
@@ -66,34 +62,10 @@ const AppContent = () => {
             <BentoGrid />
           </div>
         );
-      case 'vaults':
+      case 'finance':
         return (
-          <div className="tab-content" key="vaults">
-            <VaultsPage />
-          </div>
-        );
-      case 'fx':
-        return (
-          <div className="tab-content" key="fx">
-            <MultiCurrencyPage />
-          </div>
-        );
-      case 'bills':
-        return (
-          <div className="tab-content" key="bills">
-            <BillsPage />
-          </div>
-        );
-      case 'credit':
-        return (
-          <div className="tab-content" key="credit">
-            <CreditPage />
-          </div>
-        );
-      case 'invest':
-        return (
-          <div className="tab-content" key="invest">
-            <InvestPage />
+          <div className="tab-content" key="finance">
+            <FinanceHub />
           </div>
         );
       case 'transactions':
