@@ -50,33 +50,35 @@ const BentoGrid = () => {
         <BalanceCard className="col-span-7" balance={overview?.balance} />
         <SparklineCard className="col-span-5" />
 
-        {/* Row 2: Income Arc (6 cols) + Expenses Arc (6 cols) */}
-        <ArcCard 
-          className="col-span-6"
-          title="Income" 
-          value={overview?.income || 5700} 
-          total={8000} 
-          color="var(--accent-teal)" 
-          icon={TrendingUp} 
-          delay={0.2} 
-        />
-        <ArcCard 
-          className="col-span-6"
-          title="Expenses" 
-          value={overview?.expenses || 3210} 
-          total={5000} 
-          color="var(--accent-coral)" 
-          icon={TrendingDown} 
-          delay={0.3} 
-        />
+        {/* Row 2: Income & Expenses Arcs (Side-by-side on mobile, 6+6 on desktop) */}
+        <div className="arc-grid-mobile col-span-12">
+          <ArcCard 
+            title="Income" 
+            value={overview?.income || 5700} 
+            total={8000} 
+            color="var(--accent-teal)" 
+            icon={TrendingUp} 
+            delay={0.2} 
+          />
+          <ArcCard 
+            title="Expenses" 
+            value={overview?.expenses || 3210} 
+            total={5000} 
+            color="var(--accent-coral)" 
+            icon={TrendingDown} 
+            delay={0.3} 
+          />
+        </div>
+
+        {/* Row 3: Quick Send Contacts */}
+        <QuickSend className="col-span-12" />
         
-        {/* Row 3: AI Copilot (7 cols) + Budget Analytics (5 cols) */}
+        {/* Row 4: AI Copilot (7 cols) + Budget Analytics (5 cols) */}
         <AICopilot className="col-span-7" />
         <BudgetingAnalytics className="col-span-5" />
 
-        {/* Row 4: Recent Transactions (7 cols) + Quick Send (5 cols) */}
-        <TransactionsList className="col-span-7" transactions={overview?.recentTransactions} />
-        <QuickSend className="col-span-5" />
+        {/* Row 5: Recent Transactions (12 cols full width on mobile) */}
+        <TransactionsList className="col-span-12" transactions={overview?.recentTransactions} />
       </div>
 
       <QRPayModal isOpen={showQR} onClose={() => setShowQR(false)} />
